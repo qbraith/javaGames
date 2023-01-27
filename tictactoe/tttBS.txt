@@ -1,0 +1,7 @@
+make tictactoe completely object oriented
+tictactoe objects 
+fields: board, button or sum
+idk
+def button objects tho 
+refernce eddie video
+reference sahu code
