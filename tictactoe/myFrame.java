@@ -1,12 +1,8 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
 public class myFrame extends JFrame{
-
-    JButton button1;
-    JButton button2;
-    JButton button3;
-
     public myFrame(){
         myPanel threePanel = new myPanel(3, 3, 0, 0);
         myPanel fivePanel = new myPanel(5, 4, 250, 0);
@@ -18,10 +14,6 @@ public class myFrame extends JFrame{
         fivePanel.setBackground(new Color (110, 64, 168)); //other purple
         sevenPanel.setImageIcon("7x7.png");
         sevenPanel.setBackground(new Color (39, 0, 89)); //dark purple
-        
-        button1 = threePanel.getButton();
-        button2 = fivePanel.getButton();
-        button3 = sevenPanel.getButton();
         
         this.setTitle("TICTACTOE");
         this.setIconImage((new ImageIcon("3x3.png")).getImage());

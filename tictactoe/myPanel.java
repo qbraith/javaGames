@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -9,13 +9,11 @@ public class myPanel extends JPanel implements ActionListener{
     private JButton button;
     private int size;
     private int winCon;
-    private Object[] arr;
 
     public myPanel(int size, int winCon, int x, int y){
         this.size = size;
         this.winCon = winCon;
         this.setLayout(null);
-        this.setBackground(new Color (113, 124, 128)); //grey
         this.setBounds(x, y, 250, 400);
                 
         JLabel label = new JLabel("(" + winCon + " in a row)");
@@ -46,18 +44,10 @@ public class myPanel extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == button){
-            ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose();
+            ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose(); //exits out parent JFrame window
             tictactoe ttt = new tictactoe();
-            ttt.makeGame(size, winCon);
+            ttt.makeGame(this.size, this.winCon);
         }
-    }
-
-    public Object[] getArr(){
-        return this.arr;
-    }
-
-    public JButton getButton(){
-        return this.button;
     }
 
     public void setImageIcon(String fileName){
@@ -68,5 +58,4 @@ public class myPanel extends JPanel implements ActionListener{
         this.button.setIcon(icon);
     }
 
-    
 }

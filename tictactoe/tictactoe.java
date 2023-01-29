@@ -1,13 +1,11 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import javax.swing.JFrame;
 
 public class tictactoe{ //!this is the one meant to be reusable
     static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
     
     public static void main(String[] args) {
-        JFrame frame = new myFrame();
-        frame.setResizable(false);
+        new myFrame();
     }
 
     public static void fillBoard(char[][] board){
@@ -145,7 +143,7 @@ public class tictactoe{ //!this is the one meant to be reusable
         char player;
         String reset = "\u001B[0m", green = "\u001B[32m";
         char[][] board = new char[size][size];
-        int turn = 1, boardSize = board.length, maxMoves = (board.length*board.length)+1;
+        int turn = 1, boardSize = board.length, maxMoves = board.length*board.length;
 
         fillBoard(board);
         clear();
@@ -156,24 +154,22 @@ public class tictactoe{ //!this is the one meant to be reusable
             printBoard(board, boardSize);
             move(board, player, boardSize, obj);
             boolean gameOver = checkWinner(board, winCon);
+            
+            clear();
 
             if (gameOver){
-                clear();
                 printBoard(board, boardSize);
                 System.out.println("\n" + green + player + " WINS!!!" + reset);
                 return;
             }
-
-            turn++;
-
+            
             if (turn == maxMoves){
-                clear();
                 printBoard(board, boardSize);
                 System.out.println("\nTIE!!!!");
                 return;
             }
-
-            clear();
+            
+            turn++;
         }
     }
     
