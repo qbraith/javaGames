@@ -9,7 +9,7 @@ public class tictactoe{ //!this is the one meant to be reusable
         JFrame frame = new myFrame();
         frame.setResizable(false);
     }
-    
+
     public static void fillBoard(char[][] board){
         for (int i = 0; i < board.length; i++){
             for (int j = 0; j < board[i].length; j++){
@@ -142,38 +142,37 @@ public class tictactoe{ //!this is the one meant to be reusable
 
     public void makeGame(int size, int winCon){
         Scanner obj = new Scanner(System.in);
-        String reset = "\u001B[0m", green = "\u001B[32m";
         char player;
-        char[][] board;
-
-        System.out.println("after");
-        board = new char[size][size];
-        int boardSize = board.length, maxMoves = (board.length*board.length)+1, turn = 1;
+        String reset = "\u001B[0m", green = "\u001B[32m";
+        char[][] board = new char[size][size];
+        int turn = 1, boardSize = board.length, maxMoves = (board.length*board.length)+1;
 
         fillBoard(board);
         clear();
+
         while (true){
-            printBoard(board, boardSize);
-            if (turn % 2 == 1)
-                player = 'X';
-            else   
-                player = 'O';
+            player = (turn % 2 == 1) ? 'X' : 'O';
             
+            printBoard(board, boardSize);
             move(board, player, boardSize, obj);
             boolean gameOver = checkWinner(board, winCon);
+
             if (gameOver){
                 clear();
                 printBoard(board, boardSize);
                 System.out.println("\n" + green + player + " WINS!!!" + reset);
                 return;
             }
+
             turn++;
+
             if (turn == maxMoves){
                 clear();
                 printBoard(board, boardSize);
                 System.out.println("\nTIE!!!!");
                 return;
             }
+
             clear();
         }
     }
