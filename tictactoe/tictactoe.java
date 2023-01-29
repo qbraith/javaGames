@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 public class tictactoe{ //!this is the one meant to be reusable
     static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
@@ -38,7 +39,7 @@ public class tictactoe{ //!this is the one meant to be reusable
         boolean valid = false;
         String move = ""; //placeholder
         do{
-            System.out.print("Enter coordinate to place piece: ");
+            System.out.print("\nEnter coordinate to place piece: ");
             move = obj.nextLine().toLowerCase();
             valid = checkValid(move, boardSize);
             if (!valid)
@@ -133,33 +134,19 @@ public class tictactoe{ //!this is the one meant to be reusable
         System.out.print("\033[H\033[2J");  
         System.out.flush(); 
     }
-    
-    public static void main(String[] args) {
+
+    public void makeGame(int size, int winCon){
         Scanner obj = new Scanner(System.in);
         String reset = "\u001B[0m", green = "\u001B[32m";
         char player;
         char[][] board;
-        int winCon;
 
-
-        System.out.print("Enter t if you would like to play 3x3 (default) or f if you would like to play 5x5: ");
-        String choice = obj.nextLine().toLowerCase();
-        if (choice.equals("f")){
-            board = new char[5][5];
-            winCon = 4;
-        }
-        else if (choice.equals("seven")){
-            board = new char[7][7];
-            winCon = 5;
-        }
-        else {
-            board = new char[3][3];
-            winCon = 3;
-        }
-        
+        System.out.println("after");
+        board = new char[size][size];
         int boardSize = board.length, maxMoves = (board.length*board.length)+1, turn = 1;
 
         fillBoard(board);
+        clear();
         while (true){
             printBoard(board, boardSize);
             if (turn % 2 == 1)
@@ -184,5 +171,10 @@ public class tictactoe{ //!this is the one meant to be reusable
             }
             clear();
         }
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = new myFrame();
+        frame.setResizable(false);
     }
 }
