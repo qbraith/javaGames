@@ -4,7 +4,12 @@ import javax.swing.JFrame;
 
 public class tictactoe{ //!this is the one meant to be reusable
     static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
-
+    
+    public static void main(String[] args) {
+        JFrame frame = new myFrame();
+        frame.setResizable(false);
+    }
+    
     public static void fillBoard(char[][] board){
         for (int i = 0; i < board.length; i++){
             for (int j = 0; j < board[i].length; j++){
@@ -173,8 +178,4 @@ public class tictactoe{ //!this is the one meant to be reusable
         }
     }
     
-    public static void main(String[] args) {
-        JFrame frame = new myFrame();
-        frame.setResizable(false);
-    }
 }
