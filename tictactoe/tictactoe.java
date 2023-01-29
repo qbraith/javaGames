@@ -139,19 +139,25 @@ public class tictactoe{ //!this is the one meant to be reusable
         String reset = "\u001B[0m", green = "\u001B[32m";
         char player;
         char[][] board;
+        int winCon;
 
-        int winCon, turn = 1;
 
         System.out.print("Enter t if you would like to play 3x3 (default) or f if you would like to play 5x5: ");
         String choice = obj.nextLine().toLowerCase();
         if (choice.equals("f")){
             board = new char[5][5];
             winCon = 4;
-        } else{
+        }
+        else if (choice.equals("seven")){
+            board = new char[7][7];
+            winCon = 5;
+        }
+        else {
             board = new char[3][3];
             winCon = 3;
         }
-        int boardSize = board.length, maxMoves = (board.length*board.length)+1;
+        
+        int boardSize = board.length, maxMoves = (board.length*board.length)+1, turn = 1;
 
         fillBoard(board);
         while (true){
