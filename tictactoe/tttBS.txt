@@ -5,3 +5,9 @@ idk
 def button objects tho 
 refernce eddie video
 reference sahu code
+
+//
+might need to create a panel to store all of the buttons
+would help with having a space to display winner at the end of the game
+figure out how to fix button color when being held
+checkWinner method doesn't work for some diagonals

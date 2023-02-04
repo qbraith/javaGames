@@ -45,8 +45,9 @@ public class myPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == button){
             ((JFrame)SwingUtilities.getWindowAncestor(this)).dispose(); //exits out parent JFrame window
-            tictactoe ttt = new tictactoe();
-            ttt.makeGame(this.size, this.winCon);
+            // tictactoe ttt = new tictactoe();
+            // ttt.makeGame(this.size, this.winCon); //!this is for terminal game
+            new gttt(this.size, this.winCon); //!this is for graphical game
         }
     }
 

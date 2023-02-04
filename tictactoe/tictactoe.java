@@ -108,10 +108,16 @@ public class tictactoe{ //!this is the one meant to be reusable
 
         //all diag
         for (int i = 0; i < board.length - 2; i++){
-            int startRow = Math.abs(board.length - winCon - i), topLeftCol = 0, topRightCol = board[0].length - 1;
+            //int startRow = (board.length - winCon - i >= 0) ? board.length - winCon - i : 0;
+            // int topLeftCol = (startRow == board.length - winCon - i) ? 0 : board.length - 2 - i;
+            // int topRightCol = (startRow == board.length - winCon - i) ? board[0].length - i : Math.abs(board[0].length - topLeftCol - 1);
+            int startRow = Math.abs(board.length - winCon - i);
+            int topLeftCol = 0, topRightCol = board[0].length - 1;
             String leftToRight = "", rightToLeft = "";
+            if (i == 2)
+                System.out.println(startRow);
 
-            while (startRow < board.length && topLeftCol < board.length && topRightCol >= 0){
+            while (startRow < board.length && topLeftCol < board[0].length && topRightCol >= 0){
                 leftToRight += board[startRow][topLeftCol];
                 rightToLeft += board[startRow][topRightCol];
                 startRow++; topLeftCol++; topRightCol--;
@@ -171,6 +177,31 @@ public class tictactoe{ //!this is the one meant to be reusable
             
             turn++;
         }
+    }
+
+    public boolean graphGame(char[][] board, int turn, myButton button, int winCon){
+        System.out.println("graphGame method");
+        String reset = "\u001B[0m", green = "\u001B[32m";
+        char player = (turn % 2 == 1) ? 'O' : 'X';
+        int row = button.getRow(), col = button.getCol();
+
+        board[row][col] = player;
+        boolean gameOver = checkWinner(board, winCon);
+            
+
+        if (gameOver){
+            printBoard(board, winCon);
+            System.out.println("\n" + green + player + " WINS!!!" + reset);
+            return true;
+        }
+        
+        if (turn == board.length * board.length){
+            printBoard(board, winCon);
+            System.out.println("\nTIE!!!!");
+            return true;
+        }
+        
+        return false;
     }
     
 }
