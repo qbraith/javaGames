@@ -30,6 +30,7 @@ public class memoryMatch{
     public static void fillBoard(String board[][]){
         String reset = "\u001B[0m";
         String[] colors = {"\u001B[31m", "\u001B[36m", "\u001B[32m", "\u001B[33m", "\u001B[35m", "\u001B[34m"};
+        //red, cyan, green, yellow, purple, blue
         ArrayList<String> colorList = new ArrayList<>();
         
         Random r = new Random();
