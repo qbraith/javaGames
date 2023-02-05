@@ -27,34 +27,33 @@ public class hanoi {
             }
         } while (numDisks < 3 || numDisks > 15);
 
+        //adding all disks to left tower
         for (int i = numDisks; i > 0; i--){
             leftStack.push(i);
-            System.out.println("adding");
         }
-        leftStack.printItems();
 
         int optimalMoves = ((int) Math.pow(2, numDisks)) - 1;
-        System.out.println("\nThe fastest you can solve this game is in " + optimalMoves + " moves");
 
         //Gameplay
         int moves = 0;
         while (rightStack.getSize() != numDisks && middleStack.getSize() != numDisks){
             clear();
             System.out.println(purple + "Moves: " + moves + reset);
-            System.out.println(purple + "\n...Current Stacks...\n" + reset);
-            System.out.print(cyan);
+            System.out.println(blue + "\n...Current Stacks...\n" + reset);
             for (int i = 0; i < stacks.length; i++){
-                System.out.println(stacks[i].printItems());
+                System.out.println(cyan + stacks[i].printItems() + reset);
             }
-            System.out.print(reset);
+
             while (true){
                 System.out.println(yellow + "\nWhich stack do you want to move from?\n" + reset);
                 diskStack fromStack = getInput(stacks, scanner);
+
                 System.out.println(yellow + "\nWhich stack do you want to move to?\n" + reset);
                 diskStack toStack = getInput(stacks, scanner);
+
                 if (fromStack.getSize() == 0){
                     System.out.println(red + "\nInvalid move. Selecting from an empty stack" + reset);
-                } else if (toStack.getSize() == 0 || (Integer)fromStack.peek() < (Integer) toStack.peek()){
+                } else if (toStack.getSize() == 0 || (Integer)fromStack.peek() < (Integer)toStack.peek()){
                     Object disk = fromStack.pop();
                     toStack.push(disk);
                     moves++;
@@ -63,14 +62,12 @@ public class hanoi {
                     System.out.println(red + "\nInvalid move. You can't move a bigger disk onto a smaller one" + reset);
             }
         }
+        //game beaten
         clear();
-        System.out.print(cyan);
-        for (int i = 0; i < stacks.length; i++){
-            System.out.println(stacks[i].printItems());
-        }
-        System.out.print(reset);
-        System.out.println(green + "\n\nCongratulations!!! You completed the game in " + moves + " moves!" + reset);
-        System.out.println(green + "The minimum amount of moves is " + optimalMoves + reset);
+        for (int i = 0; i < stacks.length; i++) {System.out.println(cyan + stacks[i].printItems() + reset);}
+
+        System.out.println(green + "\n\nCongratulations!!! You completed the game in " + moves + " moves!");
+        System.out.println("The minimum amount of moves is " + optimalMoves + "." + reset);
         scanner.close();
     }
 
@@ -89,7 +86,7 @@ public class hanoi {
                 System.out.println(yellow + "Enter " + letter + " for " + name + reset);
             }
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().toLowerCase();
 
             int index = -1;
             for (int j = 0; j < choices.length; j++){
