@@ -71,7 +71,6 @@ public class hanoi {
         scanner.close();
     }
 
-    
     public static diskStack getInput(diskStack[] stacks, Scanner scanner){
         String[] choices = new String[3];
         for (int i = 0; i < stacks.length; i++){
