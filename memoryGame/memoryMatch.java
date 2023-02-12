@@ -98,7 +98,7 @@ public class memoryMatch{
             return getDimension(obj);
         }
 
-        if (row > 9 || col > 9){
+        if (row > 9){
             System.out.println("\nHorizontal board for readbility\n");
             return new String[col][row];
         }
@@ -123,17 +123,17 @@ public class memoryMatch{
         } while (!goodGuess2);
         guessed.add(guess2);
 
-        int p11 = findLetter(guessed.get(guessed.size()-1).substring(0, 1));
-        int p12 = Integer.valueOf(guessed.get(guessed.size() - 1).substring(1)) - 1;
-        int p21 = findLetter(guessed.get(guessed.size()-2).substring(0, 1));
-        int p22 = Integer.valueOf(guessed.get(guessed.size() - 2).substring(1)) - 1;
+        int prevGuessRow = findLetter(guessed.get(guessed.size()-1).substring(0, 1));
+        int prevGuessCol = Integer.valueOf(guessed.get(guessed.size() - 1).substring(1)) - 1;
+        int prev2GuessRow = findLetter(guessed.get(guessed.size()-2).substring(0, 1));
+        int prev2GuessCol = Integer.valueOf(guessed.get(guessed.size() - 2).substring(1)) - 1;
         
-        if (bracketboard[p22][p21].equals(bracketboard[p12][p11]) && !bracketboard[p22][p21].equals("[ ]")){
+        if (bracketboard[prev2GuessCol][prev2GuessRow].equals(bracketboard[prevGuessCol][prevGuessRow]) && !bracketboard[prev2GuessCol][prev2GuessRow].equals("[ ]")){
             System.out.println("Correct. You found a pair!!");
             pairsFound++;
         } else{
-            bracketboard[p12][p11] = "[ ]";
-            bracketboard[p22][p21] = "[ ]";
+            bracketboard[prevGuessCol][prevGuessRow] = "[ ]";
+            bracketboard[prev2GuessCol][prev2GuessRow] = "[ ]";
         }
 
         guesses++;
@@ -173,10 +173,16 @@ public class memoryMatch{
 
     }
 
-    public static int findLetter(String letter){
-        for (int i = 0; i < letters.length; i++){
-            if (letters[i].equals(letter))
-                return i;
+    public static int findLetter(String letter){ //binary search for time complexity 
+        int left = 0, right = letters.length;
+        while (left <= right){
+            int mid = (left + right)/2;
+            if (letters[mid].equals(letter))
+                return mid;
+            else if (letters[mid].compareTo(letter) > 0)
+                right = mid-1;
+            else if (letters[mid].compareTo(letter) < 0)
+                left = mid+1;
         }
         return -1;
     }
